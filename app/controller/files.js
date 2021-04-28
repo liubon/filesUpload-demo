@@ -26,7 +26,10 @@ class UploaderController extends Controller {
           return;
         }
         try {
-          const filename = (new Date()).getTime() + Math.random().toString(36).substr(2) + path.extname(part.filename).toLocaleLowerCase();
+          const filename =
+            new Date().getTime() +
+            Math.random().toString(36).substr(2) +
+            path.extname(part.filename).toLocaleLowerCase();
           const target = filePath + filename;
           files.push({
             fileName: filename,
@@ -42,7 +45,12 @@ class UploaderController extends Controller {
         // console.log(result);
       }
     }
-    ctx.body = files;
+    ctx.body = {
+      code: 200,
+      data: {
+        files,
+      },
+    };
   }
 }
 
